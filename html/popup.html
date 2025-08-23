@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>İstek Yakalama / sametaliylcn</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 10px; width: 400px; }
+    .filter { margin-bottom: 10px; }
+    textarea { width: 100%; height: 80px; }
+    .request { border: 1px solid #ddd; padding: 5px; margin-bottom: 5px; font-size: 12px; }
+    .controls { margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h3>Yakalanan İstekler</h3>
+
+  <div class="filter">
+    <input type="text" id="urlFilter" placeholder="URL içinde ara...">
+    <select id="methodFilter">
+      <option value="">Tümü</option>
+      <option value="GET">GET</option>
+      <option value="POST">POST</option>
+      <option value="PUT">PUT</option>
+      <option value="DELETE">DELETE</option>
+    </select>
+    <button id="applyFilter">Filtrele</button>
+  </div>
+
+  <div id="requests"></div>
+
+  <div class="controls">
+    <button id="downloadTxt">TXT İndir</button>
+    <button id="downloadHar">HAR İndir</button>
+    <button id="clearRequests">Temizle</button>
+  </div>
+
+  <script src="../js/popup.js"></script>
+</body>
+</html>
