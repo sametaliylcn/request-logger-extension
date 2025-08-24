@@ -7,16 +7,26 @@ chrome.webRequest.onBeforeRequest.addListener(
   (details) => {
     let body = "";
 
-    if (details.requestBody) {
-      if (details.requestBody.raw && details.requestBody.raw[0]?.bytes) {
-        try {
-          body = new TextDecoder("utf-8").decode(details.requestBody.raw[0].bytes);
-        } catch (e) {
-          body = "[binary data]";
-        }
-      } else if (details.requestBody.formData) {
-        body = JSON.stringify(details.requestBody.formData, null, 2);
+    if (details.url.startsWith(`chrome-extension://${chrome.runtime.id}/`)) 
+    {
+       return;
       }
+
+    if (details.requestBody) 
+     {
+      if (details.requestBody.raw && details.requestBody.raw[0]?.bytes) 
+        {
+         try 
+         {
+          body = new TextDecoder("utf-8").decode(details.requestBody.raw[0].bytes);
+         } catch (e) 
+          {
+           body = "[binary data]";
+          }
+        } else if (details.requestBody.formData) 
+          {
+           body = JSON.stringify(details.requestBody.formData, null, 2);
+          }
     }
 
     const req = {
