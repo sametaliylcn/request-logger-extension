@@ -126,8 +126,10 @@ chrome.runtime.onMessage.addListener((msg) => {
 clearBtn.addEventListener("click", () => {
   allRequests = [];
   filteredRequests = [];
-  chrome.storage.local.set({ requests: [] }, () => {
+  
+  chrome.storage.local.remove(["requests", "logs"], () => {
     container.innerHTML = "";
+    console.log("Requests ve log temizlendi");
   });
 });
 
